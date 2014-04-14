@@ -11,7 +11,7 @@
 #import "MJDetailViewController.h"
 #import "MJSecondDetailViewController.h"
 
-@interface MJViewController () <MJSecondPopupDelegate>{
+@interface MJViewController () {
     NSArray *actions;
     NSArray *animations;
 }
@@ -58,12 +58,6 @@
 {
     return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown) || (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad);
 }
-
-- (void)cancelButtonClicked:(MJSecondDetailViewController *)aSecondDetailViewController
-{
-    [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
-}
-
 
 #pragma mark - Table view data source
 
@@ -169,14 +163,13 @@
     switch (indexPath.section) {
         case 0: {
             MJDetailViewController *detailViewController = [[MJDetailViewController alloc] initWithNibName:@"MJDetailViewController" bundle:nil];
-            [self presentPopupViewController:detailViewController animationType:indexPath.row];
+            [self presentPopupViewController:detailViewController animationType:indexPath.row option:MJPopupOptionTapBackgroundToClose];
         }
             break;
             
         default: {
             MJSecondDetailViewController *secondDetailViewController = [[MJSecondDetailViewController alloc] initWithNibName:@"MJSecondDetailViewController" bundle:nil];
-            secondDetailViewController.delegate = self;
-            [self presentPopupViewController:secondDetailViewController animationType:MJPopupViewAnimationFade];
+            [self presentPopupViewController:secondDetailViewController animationType:MJPopupViewAnimationFade option:MJPopupOptionNone];
             
         }
             break;

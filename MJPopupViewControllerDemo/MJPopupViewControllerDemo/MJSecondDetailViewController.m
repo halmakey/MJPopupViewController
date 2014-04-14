@@ -6,6 +6,8 @@
 //  Copyright (c) 2012 martinjuhasz.de. All rights reserved.
 //
 
+#import "UIViewController+MJPopupViewController.h"
+
 #import "MJSecondDetailViewController.h"
 
 @interface MJSecondDetailViewController ()
@@ -14,14 +16,9 @@
 
 @implementation MJSecondDetailViewController
 
-@synthesize delegate;
-
-
 - (IBAction)closePopup:(id)sender
 {
-    if (self.delegate && [self.delegate respondsToSelector:@selector(cancelButtonClicked:)]) {
-        [self.delegate cancelButtonClicked:self];
-    }
+    [self dismissPopupViewController];
 }
 
 @end

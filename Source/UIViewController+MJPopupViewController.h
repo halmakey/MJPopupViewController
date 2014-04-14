@@ -22,13 +22,19 @@ typedef enum {
     MJPopupViewAnimationSlideRightRight,
 } MJPopupViewAnimation;
 
+typedef NS_OPTIONS(NSUInteger, MJPopupOption) {
+    MJPopupOptionNone                            = 0,
+    MJPopupOptionTapBackgroundToClose            = 1 <<  0,
+};
+
 @interface UIViewController (MJPopupViewController)
 
 @property (nonatomic, retain) UIViewController *mj_popupViewController;
 @property (nonatomic, retain) MJPopupBackgroundView *mj_popupBackgroundView;
+@property (nonatomic) MJPopupViewAnimation mj_animationType;
 
-- (void)presentPopupViewController:(UIViewController*)popupViewController animationType:(MJPopupViewAnimation)animationType;
-- (void)presentPopupViewController:(UIViewController*)popupViewController animationType:(MJPopupViewAnimation)animationType dismissed:(void(^)(void))dismissed;
-- (void)dismissPopupViewControllerWithanimationType:(MJPopupViewAnimation)animationType;
+- (void)presentPopupViewController:(UIViewController*)popupViewController animationType:(MJPopupViewAnimation)animationType option:(MJPopupOption)option;
+- (void)presentPopupViewController:(UIViewController*)popupViewController animationType:(MJPopupViewAnimation)animationType option:(MJPopupOption)option dismissed:(void(^)(void))dismissed;
+- (void)dismissPopupViewController;
 
 @end
